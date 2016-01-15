@@ -1,0 +1,8 @@
+{
+    "telegram": {
+        "token": ""
+    },
+    "enabledBots": [
+        "SampleBot"
+    ]
+}

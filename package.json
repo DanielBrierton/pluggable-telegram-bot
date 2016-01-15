@@ -1,0 +1,20 @@
+{
+  "name": "pluggable-telegram-bot",
+  "version": "0.0.1",
+  "description": "Pluggable Telegram Bot",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/danielbrierton/pluggable-telegram-bot"
+  },
+  "keywords": [
+    "telegram",
+    "bot"
+  ],
+  "author": "Daniel Brierton <daniel@brierton.me>",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.19.2",
+    "uuid": "^2.0.1"
+  }
+}
