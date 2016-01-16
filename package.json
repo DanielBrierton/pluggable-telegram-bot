@@ -21,12 +21,10 @@
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
-    "gulp-coverage": "^0.3.38",
     "gulp-coveralls": "^0.1.4",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "mocha": "^2.3.4",
-    "mocha-lcov-reporter": "^1.0.0",
     "sinon": "^1.17.2",
     "yuidocjs": "^0.9.0"
   }
