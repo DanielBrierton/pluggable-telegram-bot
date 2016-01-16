@@ -1,21 +1,4 @@
-var config = require('./config.json');
-var TelegramBot = require('node-telegram-bot-api');
-var eventBus = require('./lib/EventBus');
+var config = require('./config.json'),
+    PluggableTelegramBot = require('./src/PluggableTelegramBot');
 
-var bot = new TelegramBot(config.telegram.token, {
-    polling: true
-});
-
-var botPlugins = [];
-
-config.enabledBots.forEach(function (botName) {
-    var BotPlugin = require('./bots/' + botName);
-    botPlugins.push(new BotPlugin({
-        bot: bot,
-        eventBus: eventBus
-    }));
-});
-
-bot.on('message', function (msg) {
-    eventBus.publish('message', msg);
-});
+PluggableTelegramBot.start(config);

@@ -1,7 +1,7 @@
 var expect = require("chai").expect;
 var sinon = require("sinon");
 
-var TelegramBotPlugin = require('../../lib/TelegramBotPlugin');
+var TelegramBotPlugin = require('../../src/lib/TelegramBotPlugin');
 
 describe('TelegramBotPlugin', function () {
     var sandbox, eventBusStub, objectUnderTest;
