@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     cp = require('child_process');
 
 gulp.task('docs', function (cb) {
-    cp.exec('yuidoc ./lib/ -o docs', cb);
+    cp.exec('node node_modules/yuidocjs/lib/cli.js ./lib/ -o docs', cb);
 });
 
 gulp.task('default', ['docs'], function() {
