@@ -21,7 +21,9 @@ gulp.task('copy-tests', ['clean'], function () {
 
 gulp.task('pre-unit', ['copy-tests'], function () {
     return gulp.src(['src/**/*.js'])
-        .pipe(istanbul())
+        .pipe(istanbul({
+            includeUntested: true
+        }))
         .pipe(gulp.dest('target/src/'));
 });
 
