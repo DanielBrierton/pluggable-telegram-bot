@@ -1,4 +1,4 @@
-module.exports = {
+var PluggableTelegramBot = {
     start: function (config) {
         var TelegramBot = require('node-telegram-bot-api');
         var eventBus = require('./lib/EventBus');
@@ -21,4 +21,6 @@ module.exports = {
             eventBus.publish('message', msg);
         });
     }
-}
+};
+
+module.exports = PluggableTelegramBot;

@@ -14,7 +14,7 @@ var SampleBot = TelegramBotPlugin.extend({
                     this.setAsMessageDestination();
                 }.bind(this));
             }.bind(this)
-        }
+        };
     },
 
     onMessage: function (msg) {

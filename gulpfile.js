@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     clean = require('gulp-clean'),
+    jshint = require('gulp-jshint'),
     mocha = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
     coveralls = require('gulp-coveralls'),
@@ -10,11 +11,18 @@ gulp.task('clean', function () {
         .pipe(clean());
 });
 
+gulp.task('lint', function () {
+    return gulp.src(['src/**/*.js', 'test/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('fail'));
+})
+
 gulp.task('docs', function (cb) {
     cp.exec('node node_modules/yuidocjs/lib/cli.js ./lib/ -o target/docs', cb);
 });
 
-gulp.task('copy-tests', ['clean'], function () {
+gulp.task('copy-tests', ['clean', 'lint'], function () {
     return gulp.src(['test/**/*'])
         .pipe(gulp.dest('target/test/'));
 });
@@ -28,7 +36,7 @@ gulp.task('pre-unit', ['copy-tests'], function () {
 });
 
 gulp.task('unit', ['pre-unit'], function () {
-    return gulp.src(['target/test/unit/*.js'], { read: false })
+    return gulp.src(['target/test/unit/**/*.js'], { read: false })
         .pipe(mocha())
         .pipe(istanbul.writeReports({
             dir: './target/coverage',
