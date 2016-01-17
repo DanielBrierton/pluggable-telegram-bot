@@ -4,7 +4,7 @@ var SampleBot = TelegramBotPlugin.extend({
     commands: function () {
         return {
             "\\/msg (.+)": function (msg, matches) {
-                var response = ['Hello ' + msg.from.username || msg.from.first_name + '!'];
+                var response = ['Hello ' + (msg.from.username || msg.from.first_name) + '!'];
                 response.push('\nThanks for your message, "' + matches[1] + '"');
 
                 this.bot.sendMessage(msg.from.id, response.join('\n'), {
