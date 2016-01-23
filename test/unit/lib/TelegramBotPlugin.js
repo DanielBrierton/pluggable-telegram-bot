@@ -49,6 +49,20 @@ describe('TelegramBotPlugin', function () {
         });
     });
 
+    describe('commands()', function () {
+        it('should return an empty object by default', function () {
+            // ACT + ASSERT
+            expect(objectUnderTest.commands()).to.deep.equal({});
+        });
+    });
+
+    describe('onMessage()', function () {
+        it('should be defined', function () {
+            // ACT
+            objectUnderTest.onMessage();
+        });
+    });
+
     describe('setAsMessageDestination()', function () {
         it('should publish a removeMessageDestinations event, and set _isMessageDestination to true', function () {
             // ARRANGE
@@ -160,6 +174,14 @@ describe('TelegramBotPlugin', function () {
                 expect(e.message).to.equal('Command "\\/test (.+)" is a duplicate');
                 done();
             }
+        });
+
+        it('should not thrown an error if there isnt already a command registered with the same pattern', function (done) {
+            // ACT + ASSERT
+            try {
+                objectUnderTest._register(['\\/somethingElse (.+)']);
+                done();
+            } catch (e) {}
         });
     });
 });

@@ -17,21 +17,35 @@ describe('EventBus', function () {
     });
 
     describe('subscribe()', function () {
-        it('should add the event to the _subscribers and return a uuid', function () {
+        var uuid, eventName, callback, context;
+
+        beforeEach(function () {
             // ARRANGE
-            var uuid = 'uuid';
-            var eventName = 'eventName';
-            var callback = function () {};
-            var context = {};
+            uuid = 'uuid';
+            eventName = 'eventName';
+            callback = function () {};
+            context = {};
             sandbox.stub(uuidGenerator, 'v4');
             uuidGenerator.v4.returns('uuid');
+        });
 
+        it('should add the event to the _subscribers and return a uuid', function () {
             // ACT
             var result = EventBus.subscribe(eventName, callback, context);
 
             // ASSERT
             expect(EventBus._subscribers[eventName][uuid].callback).to.equal(callback);
             expect(EventBus._subscribers[eventName][uuid].context).to.equal(context);
+            expect(result).to.equal(uuid);
+        });
+
+        it('should default the context to the EventBus', function () {
+            // ACT
+            var result = EventBus.subscribe(eventName, callback);
+
+            // ASSERT
+            expect(EventBus._subscribers[eventName][uuid].callback).to.equal(callback);
+            expect(EventBus._subscribers[eventName][uuid].context).to.equal(EventBus);
             expect(result).to.equal(uuid);
         });
     });
